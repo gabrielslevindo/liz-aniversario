@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1 Aninho da Liz 🌸</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --rosa:    #F2C4CE;
+      --lila:    #D8B4E2;
+      --rosa-d:  #E8A0B0;
+      --lila-d:  #C09AD0;
+      --creme:   #FDF6F9;
+      --branco:  #FFFFFF;
+      --texto:   #4A3448;
+      --sutil:   #9B7DA8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--creme);
+      color: var(--texto);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── PÉTALAS DECORATIVAS ── */
+    .petal {
+      position: fixed;
+      pointer-events: none;
+      font-size: 1.4rem;
+      opacity: 0;
+      animation: fallingPetal linear infinite;
+      z-index: 0;
+    }
+    @keyframes fallingPetal {
+      0%   { transform: translateY(-60px) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.5; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 64px 24px 48px;
+      background: linear-gradient(160deg, #fce4ec 0%, #f3e5f5 50%, #fce4ec 100%);
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sutil);
+      background: rgba(255,255,255,0.6);
+      border-radius: 99px;
+      padding: 6px 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero-flores {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      display: block;
+      animation: floatFlower 3s ease-in-out infinite;
+    }
+    @keyframes floatFlower {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-8px); }
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 8vw, 4.4rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--texto);
+      margin-bottom: 8px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--lila-d);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--sutil);
+      font-weight: 300;
+      margin-bottom: 40px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── CARD DE INFO ── */
+    .info-card {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto 48px;
+      max-width: 520px;
+      padding: 0 16px;
+    }
+
+    .info-pill {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(208,180,226,0.4);
+      border-radius: 99px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--texto);
+    }
+    .info-pill .icon { font-size: 1.1rem; }
+
+    /* ── SEPARADOR FLORAL ── */
+    .divider {
+      text-align: center;
+      color: var(--rosa-d);
+      font-size: 1.3rem;
+      letter-spacing: 0.5rem;
+      margin: 8px 0 40px;
+      opacity: 0.7;
+    }
+
+    /* ── DRESS CODE ── */
+    .dresscode {
+      position: relative;
+      z-index: 1;
+      max-width: 480px;
+      margin: 0 auto 56px;
+      padding: 0 24px;
+      text-align: center;
+    }
+
+    .dresscode-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--sutil);
+      margin-bottom: 14px;
+    }
+
+    .palette {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .swatch-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.8);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+    .swatch span {
+      font-size: 0.68rem;
+      color: var(--sutil);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── FORM ── */
+    .form-section {
+      position: relative;
+      z-index: 1;
+      max-width: 460px;
+      margin: 0 auto 72px;
+      padding: 0 24px;
+    }
+
+    .form-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 28px;
+      color: var(--texto);
+    }
+
+    .field {
+      margin-bottom: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sutil);
+    }
+
+    input, select {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--texto);
+      background: rgba(255,255,255,0.85);
+      border: 1.5px solid rgba(208,180,226,0.5);
+      border-radius: 12px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus {
+      border-color: var(--lila-d);
+      box-shadow: 0 0 0 3px rgba(192,154,208,0.18);
+    }
+
+    .select-wrap {
+      position: relative;
+    }
+    .select-wrap::after {
+      content: '❯';
+      font-size: 0.65rem;
+      color: var(--sutil);
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%) rotate(90deg);
+      pointer-events: none;
+    }
+
+    .btn {
+      margin-top: 8px;
+      width: 100%;
+      padding: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: white;
+      background: linear-gradient(135deg, var(--rosa-d), var(--lila-d));
+      border: none;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(192,154,208,0.4);
+    }
+    .btn:hover  { opacity: 0.9; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* ── SUCESSO ── */
+    .success {
+      display: none;
+      text-align: center;
+      padding: 40px 24px;
+      animation: fadeIn 0.5s ease;
+    }
+    .success-emoji { font-size: 3rem; margin-bottom: 16px; }
+    .success h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .success p {
+      color: var(--sutil);
+      font-size: 0.92rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RODAPÉ ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.78rem;
+      color: var(--sutil);
+      opacity: 0.7;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .petal, .hero-flores { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Pétalas caindo -->
+  <div id="petals"></div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="hero-badge">Você está convidado ✨</span>
+    <span class="hero-flores">🌸</span>
+    <h1>1 Aninho da<br><em>Liz Levindo</em></h1>
+    <p class="hero-sub">Venha celebrar com a gente essa data tão especial</p>
+
+    <div class="info-card">
+      <div class="info-pill"><span class="icon">📅</span> 05 de dezembro de 2026</div>
+      <div class="info-pill"><span class="icon">🕕</span> 18h</div>
+      <div class="info-pill"><span class="icon">🏡</span> Quintal Turma da Tia Carol</div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">🌸 ✿ 🌸</div>
+
+  <!-- DRESS CODE -->
+  <div class="dresscode">
+    <p class="dresscode-title">Dress code · Tons pastel</p>
+    <div class="palette">
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#F2C4CE;"></div>
+        <span>Rosa</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#EFBDCE;"></div>
+        <span>Rosa claro</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#D8B4E2;"></div>
+        <span>Lilás</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#C9A8D4;"></div>
+        <span>Lilás médio</span>
+      </div>
+      <div class="swatch">
+        <div class="swatch-circle" style="background:#F7E8F2;"></div>
+        <span>Off-white</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIVIDER -->
+  <div class="divider">✿ 🌸 ✿</div>
+
+  <!-- FORMULÁRIO -->
+  <section class="form-section">
+    <h2 class="form-title">Confirme sua presença</h2>
+
+    <div id="form-wrapper">
+      <div class="field">
+        <label for="nome">Seu nome</label>
+        <input id="nome" type="text" placeholder="Como você se chama?" />
+      </div>
+
+      <div class="field">
+        <label for="adultos">Adultos que vão comparecer</label>
+        <div class="select-wrap">
+          <select id="adultos">
+            <option value="" disabled selected>Quantos adultos?</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option value="6 +">6+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="criancas">Crianças que vão comparecer</label>
+        <div class="select-wrap">
+          <select id="criancas">
+            <option value="" disabled selected>Quantas crianças?</option>
+            <option>Nenhuma</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="presenca">Confirmação</label>
+        <div class="select-wrap">
+          <select id="presenca">
+            <option value="" disabled selected>Você vai conseguir ir?</option>
+            <option value="Sim, Estarei lá!">✅ Sim, estarei lá!</option>
+            <option value="Não vou conseguir">❌ Não vou conseguir ir</option>
+            <option value="Talvez, confirmo depois">🤔 Talvez, confirmo depois</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn" id="btn-confirmar" onclick="confirmar()">🌸 Confirmar presença</button>
+    </div>
+
+    <!-- SUCESSO -->
+    <div class="success" id="sucesso">
+      <div class="success-emoji">🌸</div>
+      <h2 id="msg-sucesso">Que alegria!</h2>
+      <p id="msg-sub">A família Levindo ficará muito feliz em tê-la na festa da Liz!</p>
+    </div>
+  </section>
+
+  <footer>feito com amor para a Lizinha 🌸</footer>
+
+  <script>
+    // ── Pétalas caindo ──
+    const emojis = ['🌸', '🌷', '✿', '🏵️'];
+    const container = document.getElementById('petals');
+    for (let i = 0; i < 14; i++) {
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      p.style.left     = Math.random() * 100 + 'vw';
+      p.style.fontSize = (0.9 + Math.random() * 1.2) + 'rem';
+      const dur = 8 + Math.random() * 12;
+      p.style.animationDuration = dur + 's';
+      p.style.animationDelay   = -(Math.random() * dur) + 's';
+      container.appendChild(p);
+    }
+
+    // ── Confirmação + envio ao Google Forms ──
+    async function confirmar() {
+      const nome     = document.getElementById('nome').value.trim();
+      const adultos  = document.getElementById('adultos').value;
+      const criancas = document.getElementById('criancas').value;
+      const presenca = document.getElementById('presenca').value;
+
+      if (!nome || !adultos || !criancas || !presenca) {
+        alert('Preencha todos os campos antes de confirmar 🌸');
+        return;
+      }
+
+      const btn = document.getElementById('btn-confirmar');
+      btn.disabled = true;
+      btn.textContent = 'Enviando... 🌸';
+
+      // Monta o payload com os entry IDs do Google Forms
+      const FORM_ID = '1FAIpQLScsdPxEutNL2ICWe_EJApxb_RA3GzoghpzFHI1zdjExLy8l7w';
+      const body = new URLSearchParams({
+        'entry.795622191': nome,
+        'entry.965835584': adultos,
+        'entry.310264335': criancas,
+        'entry.189392664': presenca,
+      });
+
+      // Envia em background (no-cors = sem resposta, mas chega no Google)
+      try {
+        await fetch(
+          `https://docs.google.com/forms/d/e/${FORM_ID}/formResponse`,
+          { method: 'POST', mode: 'no-cors', body }
+        );
+      } catch (_) {
+        // no-cors sempre cai no catch — é esperado, o dado foi enviado
+      }
+
+      // Exibe mensagem de sucesso
+      const msgEl = document.getElementById('msg-sucesso');
+      const subEl = document.getElementById('msg-sub');
+
+      if (presenca === 'Sim, Estarei lá!') {
+        msgEl.textContent = `Que alegria, ${nome}! 🎉`;
+        subEl.textContent = 'A família Levindo ficará muito feliz em tê-la na festa da Liz!';
+      } else if (presenca === 'Não vou conseguir') {
+        msgEl.textContent = `Que pena, ${nome}... 💕`;
+        subEl.textContent = 'Obrigada por avisar! A Liz vai sentir sua falta.';
+      } else {
+        msgEl.textContent = `Tá bom, ${nome}! 🌸`;
+        subEl.textContent = 'Quando você decidir, pode confirmar por aqui. Esperamos você!';
+      }
+
+      document.getElementById('form-wrapper').style.display = 'none';
+      document.getElementById('sucesso').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
